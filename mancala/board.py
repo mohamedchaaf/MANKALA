@@ -9,9 +9,10 @@ class MancalaBoard:
         self.player2_pits = ('G','H','I','J','K','L')
 
         self.opposite = {
-            'A':'L','B':'K','C':'J','D':'I','E':'H','F':'G',
-            'G':'F','H':'E','I':'D','J':'C','K':'B','L':'A'
+            'A':'G','B':'H','C':'I','D':'J','E':'K','F':'L',
+            'G':'A','H':'B','I':'C','J':'D','K':'E','L':'F'
         }
+
 
         self.next_pit = {
             'A':'B','B':'C','C':'D','D':'E','E':'F','F':1,

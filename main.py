@@ -1,20 +1,28 @@
 from mancala.play import Play
 
-
 def display_board(board):
     print("\n================= MANCALA BOARD =================")
-    # Player 2 pits
-    print("          Player 2 (Computer)    ")
+
+    # Player 2 pits (G-L)
     p2_pits = ['G','H','I','J','K','L']
+    print("          Player 2 (Computer)    ")
     print("  ", end="")
+    for p in p2_pits:
+        print(f" [{p}]", end=" ")
+    print("\n  ", end="")
     for p in p2_pits:
         print(f"[{board[p]:2}]", end=" ")
     print()
+
     # Stores
     print(f"[{board[1]:2}]", " " * 25, f"[{board[2]:2}]")
-    # Player 1 pits
+
+    # Player 1 pits (A-F)
     p1_pits = ['A','B','C','D','E','F']
     print("  ", end="")
+    for p in p1_pits:
+        print(f" [{p}]", end=" ")
+    print("\n  ", end="")
     for p in p1_pits:
         print(f"[{board[p]:2}]", end=" ")
     print("\n          Player 1 (Human)")
@@ -49,4 +57,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
