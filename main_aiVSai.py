@@ -1,0 +1,59 @@
+from mancala.playAI import PlayAI
+
+def display_board(board):
+    print("\n================= MANCALA BOARD =================")
+
+    # Player 2 pits (G-L)
+    p2_pits = ['G','H','I','J','K','L']
+    print("          Player 2 (Computer 2)    ")
+    print("  ", end="")
+    for p in p2_pits:
+        print(f" [{p}]", end=" ")
+    print("\n  ", end="")
+    for p in p2_pits:
+        print(f"[{board[p]:2}]", end=" ")
+    print()
+
+    # Stores
+    print(f"[{board[1]:2}]", " " * 25, f"[{board[2]:2}]")
+
+    # Player 1 pits (A-F)
+    p1_pits = ['A','B','C','D','E','F']
+    print("  ", end="")
+    for p in p1_pits:
+        print(f" [{p}]", end=" ")
+    print("\n  ", end="")
+    for p in p1_pits:
+        print(f"[{board[p]:2}]", end=" ")
+    print("\n          Player 1 (computer 1)")
+    print("================================================\n")
+
+def main():
+    game = PlayAI()
+    display_board(game.game.state.board)
+
+    while not game.game.gameOver():
+        # c1 turn
+        extra = game.computerTurn()
+        display_board(game.game.state.board)
+        while extra:
+            print("Computer 1 gets an extra turn!")
+            extra = game.computerTurn()
+            display_board(game.game.state.board)
+
+        if game.game.gameOver():
+            break
+
+        # c2 turn
+        extra = game.computer2Turn()
+        display_board(game.game.state.board)
+        while extra:
+            print("Computer 2 gets an extra turn!")
+            extra = game.computer2Turn()
+            display_board(game.game.state.board)
+
+    winner, score = game.game.findWinner()
+    print(f"Game Over! Winner: {winner} with {score} seeds.")
+
+if __name__ == "__main__":
+    main()
