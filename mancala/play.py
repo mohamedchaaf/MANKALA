@@ -6,17 +6,25 @@ class Play:
     def __init__(self):
         self.game = Game()
 
-    def humanTurn(self):
+    # def humanTurn(self):
+    #     moves = self.game.state.possibleMoves(self.game.playerSide['HUMAN'])
+    #     print("Your possible moves:", moves)
+
+    #     move = input("Enter your move (pit letter): ").upper()
+
+    #     while move not in moves:
+    #         move = input("Invalid move! Choose again: ").upper()
+
+    #     extra_turn = self.game.state.doMove(self.game.playerSide['HUMAN'], move)
+    #     return extra_turn
+    
+    def humanTurn(self, pit):
         moves = self.game.state.possibleMoves(self.game.playerSide['HUMAN'])
-        print("Your possible moves:", moves)
-
-        move = input("Enter your move (pit letter): ").upper()
-
-        while move not in moves:
-            move = input("Invalid move! Choose again: ").upper()
-
-        extra_turn = self.game.state.doMove(self.game.playerSide['HUMAN'], move)
+        if pit not in moves:
+            return False
+        extra_turn = self.game.state.doMove(self.game.playerSide['HUMAN'], pit)
         return extra_turn
+
     
     def computerTurn(self, depth=4):
         value, bestPit = self.MinimaxAlphaBetaPruning(self.game, 'COMPUTER', depth, -math.inf, math.inf)
